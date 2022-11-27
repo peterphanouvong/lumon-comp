@@ -197,6 +197,8 @@ a {
 .link {
   text-decoration: underline;
   text-underline-offset: 0.2rem;
+  font-family: Manifold Extended CF;
+  font-size: var(--g-font-size-small);
 }
 
 .link:hover {

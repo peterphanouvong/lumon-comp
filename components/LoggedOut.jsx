@@ -13,15 +13,22 @@ export const LoggedOut = () => {
             Come now, children of my industry, and know the children of my
             blood.
           </p>
-          <div>
-            <Link className="btn btn-dark" href="/api/auth/login">
+          <div className="spacing-1">
+            {/* TODO: href to kinde login endpoint */}
+            <Link className="btn btn-dark" href="#">
               SVRD ACCESS
             </Link>
           </div>
+
+          <Link
+            className="link"
+            target="_blank"
+            href="https://kinde.com/docs/developer-tools/nextjs-sdk"
+          >
+            Go to docs
+          </Link>
         </div>
       </main>
-
-      <footer className="footer"></footer>
     </>
   );
 };

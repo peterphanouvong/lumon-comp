@@ -1,12 +1,10 @@
 import "../styles/globals.css";
-import { KindeProvider } from "@kinde-oss/kinde-auth-nextjs";
+
+// TODO:
+// Wrap the app in a KindeProvider
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <KindeProvider>
-      <Component {...pageProps} />
-    </KindeProvider>
-  );
+  return <Component {...pageProps} />;
 }
 
 export default MyApp;
