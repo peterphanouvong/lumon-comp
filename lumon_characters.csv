@@ -1,0 +1,5 @@
+email,first_name,last_name,id,email_verified,hashed_password,hashing_method
+employee_1@lumon.com,Helena,Eagan,1,TRUE,75881948ea099613042a67655f41f0f1,md5
+employee_2@lumon.com,Mark,Scout,2,TRUE,75881948ea099613042a67655f41f0f1,md5
+employee_3@lumon.com,Irving,Bailiff,3,TRUE,75881948ea099613042a67655f41f0f1,md5
+employee_4@lumon.com,Dylan,George,4,TRUE,75881948ea099613042a67655f41f0f1,md5
