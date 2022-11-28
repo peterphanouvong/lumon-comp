@@ -1,46 +1,97 @@
-# Kinde Starter Kit - NextJS
+# Kinde Auth Competition - NextJS
 
-This is a NextJS template with [KindeAuth](https://kinde.com/docs/sdks/nextjs-sdk).
+This is a NextJS integration competition with [KindeAuth](https://kinde.com/docs/sdks/nextjs-sdk).  
+To win the competition you have to integrate this app with KindeAuth and log in with a migrated user in the fastest time.
 
-## Register an account on Kinde
+## Configure the app
 
-To get started set up an account on [Kinde](https://app.kinde.com/register).
-
-## Setup your local environment
-
-Clone this repo and install dependencies by running `npm i`
-
-Make a copy of `.env_sample` and name it simply `.env`. Set the following variables with the details from the Kinde `App Keys` page
-
-> KINDE_ISSUER_URL - The token host value
->
-> KINDE_CLIENT_SECRET - The client secret
-
-e.g
+1. Environment variables: rename `.env_sample` to `.env` and change the client ID and client secret to match the App keys on the [Backend app details page](https://lumon.kinde.com/admin/cx/_:nav&m:application_details::_:submenu&s:details&id:3c9eb86e66144335b2d31479d6930b68).
 
 ```
-KINDE_ISSUER_URL=https://your_kinde_subdomain.kinde.com
-KINDE_CLIENT_SECRET=some5ecretFromappKey5pag3
+// .env_sample (rename to .env)
+
+KINDE_SITE_URL=http://localhost:3000
+KINDE_POST_LOGOUT_REDIRECT_URL=http://localhost:3000
+KINDE_ISSUER_URL=https://lumon.kinde.com
+KINDE_CLIENT_ID=your_client_id
+KINDE_CLIENT_SECRET=your_client_secret
 ```
 
-## Set your Callback and Logout URLs
+2. Set up Kinde Auth endpoints
 
-Your user will be redirected to Kinde to authenticate. After they have logged in or registered they will be redirected back to your NextJS application.
+```
+// pages/api/auth/[...kindeAuth]
 
-You need to specify in Kinde which url you would like your user to be redirected to in order to authenticate your app.
+import {handleAuth} from "@kinde-oss/kinde-auth-nextjs";
 
-On the App Keys page set ` Allowed callback URLs` to `http://localhost:3000/api/auth/kinde_callback`
+export default handleAuth();
+```
 
-> Important! This is required for your users to successfully log in to your app.
+## Integrate with your app
 
-You will also need to set the url they will be redirected to upon logout. Set the `Allowed logout redirect URLs` to http://localhost:3000.
+1. Wrap the App in a KindeProvider
 
-## Start the app
+```
+// pages/_app.js
 
-Run `npm start` and navigate to `http://localhost:3000`.
+import {KindeProvider} from "@kinde-oss/kinde-auth-nextjs";
 
-Click on `Sign up` and register your first user for your business!
+function MyApp({Component, pageProps}) {
+    return (
+        <KindeProvider>
+            <Component {...pageProps} />
+        </KindeProvider>
+    );
+}
 
-## View users in Kinde
+export default MyApp;
+```
 
-If you navigate to the "Users" page within Kinde you will see your newly registered user there. 🚀
+2. Check if authenticated: use the useKindeAuth hook to check if the current user is authenticated or if the data is loading.
+
+```
+// pages/index.js
+
+import {useKindeAuth} from "@kinde-oss/kinde-auth-nextjs";
+...
+
+const {isAuthenticated, isLoading} = useKindeAuth();
+```
+
+3. Link to the login endpoint
+
+```
+// components/LoggedIn.jsx
+
+...
+
+<Link className="btn btn-dark" href="/api/auth/login">
+  SVRD ACCESS
+</Link>
+
+...
+```
+
+> 💡 Now if you click the link you should be able taken to the Lumon login page.
+
+## Enable Google Auth
+
+Go to `Settings`>`Applications`>`Backend app`>`Authentication` to enable Google Auth (don't forget to press save).
+
+> 💡 Now you should be able to see the "Continue with Google" button on the login page.
+
+## Migrate Users
+
+Go to `Users`>`Add users`>`Import users`>`Custom` and select the `lumon_characters.csv` file to migrate users across.
+
+> 💡 Now you should be able to see the users listed on the Users page.
+
+## Get SVRD access!
+
+Finally, log into the Lumon app with one of the following accounts:
+| Email | Password |
+| -------------------- | --------- |
+| employee_1@lumon.com | severance |
+| employee_2@lumon.com | severance |
+| employee_3@lumon.com | severance |
+| employee_4@lumon.com | severance |
