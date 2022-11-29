@@ -1,3 +1,3 @@
-// TODO:
-// use handleAuth from the nextjs SDK
-// (check the docs)
+import { handleAuth } from "@kinde-oss/kinde-auth-nextjs";
+
+export default handleAuth();

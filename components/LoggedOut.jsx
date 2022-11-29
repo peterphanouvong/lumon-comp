@@ -14,8 +14,7 @@ export const LoggedOut = () => {
             blood.
           </p>
           <div className="spacing-1">
-            {/* TODO: href to kinde login endpoint */}
-            <Link className="btn btn-dark" href="#">
+            <Link className="btn btn-dark" href="/api/auth/login">
               SVRD ACCESS
             </Link>
           </div>
