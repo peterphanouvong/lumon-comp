@@ -1,13 +1,10 @@
+import { useKindeAuth } from "@kinde-oss/kinde-auth-nextjs";
 import { LoggedIn } from "../components/LoggedIn";
 import { LoggedOut } from "../components/LoggedOut";
 
-// TODO:
-// Use Kinde Auth to determine if a user is authenticated and if data is loading.
-
 export default function Home() {
   // replace with variables from useKindeAuth
-  const isLoading = false;
-  const isAuthenticated = false;
+  const { isAuthenticated, isLoading } = useKindeAuth();
 
   if (isLoading) return <>Loading...</>;
 
