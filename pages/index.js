@@ -6,7 +6,7 @@ export default function Home() {
   // replace with variables from useKindeAuth
   const { isAuthenticated, isLoading } = useKindeAuth();
 
-  if (isLoading) return <>Loading...</>;
+  if (isLoading) return <>Loading....</>;
 
   return isAuthenticated ? <LoggedIn /> : <LoggedOut />;
 }
